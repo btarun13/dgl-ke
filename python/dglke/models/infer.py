@@ -142,11 +142,11 @@ class ScoreInfer(object):
             score = score[sidx]
             idx = idx[sidx]
 
-            tail_idx = idx % num_tail
+            tail_idx = (idx % num_tail).long()
             idx = floor_divide(idx, num_tail)
-            rel_idx = idx % num_rel
+            rel_idx = (idx % num_rel).long()
             idx = floor_divide(idx, num_rel)
-            head_idx = idx % num_head
+            head_idx = (idx % num_head).long()
 
             result.append((F.asnumpy(head[head_idx]),
                            F.asnumpy(rel[rel_idx]),
